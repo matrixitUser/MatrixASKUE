@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pavlovka</string>
+    <string name="tower">Башня</string>
+    <string name="upp1">УПП1</string>
+    <string name="upp2">УПП2</string>
+    <string name="start">Start</string>
+    <string name="update">Обновить</string>
+    <string name="startUpp1">Start</string>
+    <string name="startUpp2">Start</string>
+    <string name="start_and_h_smaller"><![CDATA[START and h <]]></string>
+    <string name="stop_and_h_smaller"><![CDATA[STOP and h < (default)]]></string>
+
+</resources>

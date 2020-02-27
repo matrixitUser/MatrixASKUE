@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:navigationdrawer="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/CustomizableOptionsActivity"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Параметры">
+    </item>
+    <item
+        android:id="@+id/LogsActivity"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Логи">
+    </item>
+    <item
+        android:id="@+id/StartStopTimeActivity"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Время старта/стопа упп">
+    </item>
+    <item
+        android:id="@+id/Exit"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Выйти из системы">
+    </item>
+
+</menu>

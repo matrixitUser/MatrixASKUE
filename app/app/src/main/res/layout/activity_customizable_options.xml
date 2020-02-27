@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/scrOptions"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="Уведомления"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+        <Switch
+            android:id="@+id/swhWlsLessThenWLsminAndStop"
+            android:textOn="#5ABEB4"
+            android:theme="@style/MySwitch"
+            android:layout_width="35dp"
+            android:layout_height="15dp"
+            android:layout_weight="4"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:checked="false"
+            android:textSize="14sp"
+            android:text="@string/stop_and_h_smaller"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <Switch
+                    android:id="@+id/swhWlsMoreThenWlsmaxAndStart"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:checked="false"
+                    android:textSize="14sp"
+                    android:text="START and h > (default)"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/start_and_h_smaller"
+                    android:textSize="14sp"
+                    android:layout_marginRight="5dp"/>
+
+                <EditText
+                    android:id="@+id/etWLSmin2"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textSize="14sp"
+                    android:text="м"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"/>
+                <Switch
+                    android:id="@+id/swhWlsLessThenWlsmin2AndStart"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tvWLSmax2"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="5dp"
+                    android:text="START and h >"
+                    android:layout_weight="4"
+                    android:layout_marginRight="5dp"/>
+                <EditText
+                    android:id="@+id/etWLSmax2"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textSize="14sp"
+                    android:text="м"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"/>
+
+                <Switch
+                    android:id="@+id/swhWlsMoreThenWlsmax2AndStart"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tvProc1"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="Несоответствие WLS по датчику и высоте более чем на"
+                    android:layout_weight="4"
+                    android:layout_marginRight="5dp"/>
+
+                <EditText
+                    android:id="@+id/etProc1"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textSize="14sp"
+                    android:text="%"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"/>
+
+                <Switch
+                    android:id="@+id/swhProc1"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tvMaxTimeStop"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:text="Нахождение в STOP более чем"
+                    android:layout_weight="4"
+                    android:layout_marginRight="5dp"/>
+
+                <EditText
+                    android:id="@+id/etMaxTimeStop"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:textColorHighlight="@color/colorBlue200"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textSize="14sp"
+                    android:text="мин"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"/>
+
+                <Switch
+                    android:id="@+id/swhMaxTimeStop"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tvProc2"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="5dp"
+                    android:text="При режиме START ток меньше"
+                    android:layout_marginRight="5dp"/>
+
+                <EditText
+                    android:id="@+id/etProc2"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:textColorHighlight="@color/colorBlue200"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textSize="14sp"
+                    android:text="%"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"/>
+                <Switch
+                    android:id="@+id/swhProc2"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <Switch
+                    android:id="@+id/swhDataNull"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:checked="false"
+                    android:textSize="14sp"
+                    android:text="Отсутствуют данные"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <Switch
+                    android:id="@+id/swhNotConnection"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:checked="false"
+                    android:textSize="14sp"
+                    android:text="Отсутствует соединение"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="Дополнительно"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <Switch
+                    android:id="@+id/swhAutoQueryByDiscrepancy"
+                    android:textOn="#5ABEB4"
+                    android:theme="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:checked="false"
+                    android:textSize="14sp"
+                    android:text="Автоматический опрос при несоответствиях"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:text="Вариант управления"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="244dp"
+                    android:layout_height="match_parent"></Spinner>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

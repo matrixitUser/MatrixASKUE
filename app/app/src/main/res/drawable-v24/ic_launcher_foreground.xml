@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108"
+    >
+    <path
+        android:fillType="evenOdd"
+        android:pathData="M23.7,18.9c-2,1 -3.7,1.5 -3.7,1 0,-0.5 -1.8,-0.9 -4,-0.9l-4,-0 0,13.5 0,13.5 4,-0 3.9,-0 0.3,-10.6c0.3,-9.5 0.5,-10.8 2.4,-12 1.7,-1.2 2.3,-1.2 4,-0 1.6,1.2 1.9,2.8 2.1,11.8l0.2,10.3 3.8,-0 3.8,-0 0,-10.3c0,-9.1 0.2,-10.5 1.9,-11.8 2.4,-1.7 2.8,-1.7 5.2,-0 1.6,1.3 1.9,2.8 2,11.8l0.2,10.3 3.6,0.3 3.6,0.3 0,-11.5c0,-10.6 -0.2,-11.7 -2.4,-14.2 -3.1,-3.7 -8.4,-3.8 -12.2,-0.4 -1.9,1.8 -2.8,2.1 -3.1,1.2 -0.5,-1.2 -5.4,-4.2 -7,-4.2 -0.5,-0 -2.5,0.9 -4.6,1.9z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="78.5885"
+                android:endY="90.9159"
+                android:startX="48.7653"
+                android:startY="61.0927"
+                android:type="linear">
+                <item
+                    android:color="#44000000"
+                    android:offset="0.0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M23.7,18.9c-2,1 -3.7,1.5 -3.7,1 0,-0.5 -1.8,-0.9 -4,-0.9l-4,-0 0,13.5 0,13.5 4,-0 3.9,-0 0.3,-10.6c0.3,-9.5 0.5,-10.8 2.4,-12 1.7,-1.2 2.3,-1.2 4,-0 1.6,1.2 1.9,2.8 2.1,11.8l0.2,10.3 3.8,-0 3.8,-0 0,-10.3c0,-9.1 0.2,-10.5 1.9,-11.8 2.4,-1.7 2.8,-1.7 5.2,-0 1.6,1.3 1.9,2.8 2,11.8l0.2,10.3 3.6,0.3 3.6,0.3 0,-11.5c0,-10.6 -0.2,-11.7 -2.4,-14.2 -3.1,-3.7 -8.4,-3.8 -12.2,-0.4 -1.9,1.8 -2.8,2.1 -3.1,1.2 -0.5,-1.2 -5.4,-4.2 -7,-4.2 -0.5,-0 -2.5,0.9 -4.6,1.9z"
+        android:strokeWidth="1"
+        android:fillColor="#000000"
+        android:strokeColor="#00000000">
+    </path>
+</vector>
