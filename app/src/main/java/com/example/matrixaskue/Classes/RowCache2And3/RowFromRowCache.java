@@ -3,6 +3,11 @@ package com.example.matrixaskue.Classes.RowCache2And3;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RowFromRowCache {
 
     @SerializedName("id")
@@ -32,6 +37,10 @@ public class RowFromRowCache {
     @SerializedName("event")
     @Expose
     public String event;
+
+    @SerializedName("date")
+    @Expose
+    public String date;
 
 
 
@@ -64,4 +73,14 @@ public class RowFromRowCache {
         return event;
     }
 
+    public Date getDate() {
+        Date date1 = new Date();
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+        try {
+            date1 = formatter.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date1;
+    }
 }

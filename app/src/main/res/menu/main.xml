@@ -2,12 +2,54 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:navigationdrawer="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:id="@+id/Report"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Квитанции и отчеты">
+    </item>
+    <item
+        android:id="@+id/Send_meters"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Корректирока показаний">
+    </item>
+    <item
+        android:id="@+id/Notif"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Уведомления">
+    </item>
+    <item
+        android:id="@+id/Settings"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Настройки профиля">
+    </item>
+    <item
+        android:id="@+id/Setting_notif"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Настройки уведомлений">
+    </item>
+    <item
+        android:id="@+id/Feedback"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Обратная связь">
+    </item>
+    <item
+        android:id="@+id/Profile"
+        android:icon="@android:drawable/ic_menu_info_details"
+        navigationdrawer:showAsAction="never"
+        android:title="Сменить пользователя">
+    </item>
     <item
         android:id="@+id/Exit"
         android:icon="@android:drawable/ic_menu_info_details"
         navigationdrawer:showAsAction="never"
         android:title="Выйти из системы">
     </item>
+
 
 </menu>

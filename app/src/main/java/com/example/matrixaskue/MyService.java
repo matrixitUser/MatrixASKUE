@@ -312,8 +312,8 @@ public class MyService extends Service {
         isEnterInFunc = true;
         //RecordsFromQueryDB[] records = ApiQuery.Instance().QueryFromDatabase(this);
         listIds.clear();
-        listNames.clear();
-        listPNames.clear();
+     //   listNames.clear();
+     //   listPNames.clear();
         listValues.clear();
         RowFromRowCache[] recordsName = ApiQuery.Instance().RowCache(this);
 
@@ -321,13 +321,15 @@ public class MyService extends Service {
             String tmp1 = recordsName[i].getId();
             listIds.add(tmp1);
             String name = recordsName[i].getName();
-            listNames.add(name);
+         //   listNames.add(name);
             String pName = recordsName[i].getPname();
-            listPNames.add(pName);
+         //   listPNames.add(pName);
             float value = recordsName[i].getValue();
             String valueUnit = recordsName[i].getvalueUnitMeasurement();
             String values = value +" " + valueUnit;
-            listValues.add(values);
+            Date date =  recordsName[i].getDate();
+            String allValues = "Электроэнергия" + "\n" + pName + "\n" + values + "\n" + date + "\n";
+            listValues.add(allValues);
         }
 
 
@@ -341,8 +343,8 @@ public class MyService extends Service {
 
 
         Intent intent = new Intent()
-                .putExtra("listNames", listNames)
-                .putExtra("listPNames",listPNames)
+            //    .putExtra("listNames", listNames)
+            //    .putExtra("listPNames",listPNames)
                 .putExtra("listValues",listValues)
                 .putExtra("listIds",listIds)
                 ;

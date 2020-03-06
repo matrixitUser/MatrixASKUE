@@ -20,9 +20,10 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
         <activity
-            android:name=".NavigationActivity"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".PersonalSettingActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".SendMetersActivity" />
         <activity android:name=".FullDateActivity" />
         <activity
             android:name=".SigninActivity"

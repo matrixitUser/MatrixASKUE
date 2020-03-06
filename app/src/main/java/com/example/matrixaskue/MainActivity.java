@@ -2,9 +2,11 @@ package com.example.matrixaskue;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +31,7 @@ import java.util.concurrent.Executor;
 
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayout layoutName, layoutPName, layoutValue;
+    LinearLayout  layoutValue;
     public Gson gson = new Gson();
 
     public Properties properties;
@@ -49,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        layoutName = findViewById(R.id.layoutName);
-        layoutPName = findViewById(R.id.layoutPName);
+
         layoutValue = findViewById(R.id.layoutValue);
 
         String login = "", password = "";
@@ -84,12 +85,6 @@ public class MainActivity extends AppCompatActivity {
         myService.stopSelf();
         myService.IsActivity(true);
         startService(intent);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                TcpIpWls();
-            }
-        }).start();
     }
 
 
@@ -102,6 +97,30 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.Report:
+                // В разработке
+            case R.id.Send_meters:
+                Intent intentSend = new Intent(this, SendMetersActivity.class);
+                startActivity(intentSend);
+                return true;
+            case R.id.Notif:
+             // В разработке
+                //   Intent intentNotif = new Intent(this, SendMetersActivity.class);
+               // startActivity(intentNotif);
+            case R.id.Settings:
+                Intent intentS = new Intent(this, PersonalSettingActivity.class);
+                startActivity(intentS);
+                return true;
+            case R.id.Setting_notif:
+                // В разработке
+              //  Intent intentSn = new Intent(this, PersonalSettingActivity.class);
+             //   startActivity(intentSn);
+            case R.id.Feedback:
+                Intent intentF = new Intent(this, FeedbackActivity.class);
+                startActivity(intentF);
+                return true;
+            case R.id.Profile:
+                // В разработке
             case R.id.Exit:
                 PendingIntent pendingIntent = createPendingResult(1, new Intent(),0  );
                 Intent intentExit = new Intent(this, MyService.class).putExtra("pendingIntent", pendingIntent);
@@ -122,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 android.os.Process.killProcess(android.os.Process.myPid());
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -163,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else if (resultCode == Const.Success) { // TODO Берем данные с my servise
-            listNames = data.getStringArrayListExtra("listNames");
-            listPNames = data.getStringArrayListExtra("listPNames");
+           // listNames = data.getStringArrayListExtra("listNames");
+           // listPNames = data.getStringArrayListExtra("listPNames");
             listValues = data.getStringArrayListExtra("listValues");
             listIds = data.getStringArrayListExtra("listIds");
             if (funtionStart == true) updateValue();
@@ -194,68 +214,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public Socket socket;
-    // while this is true, the server will continue running
-    // used to send messages
-    private DataOutputStream mBufferOut;
-    // used to read messages from the server
-    public BufferedReader mBufferIn;
-    // sends message received notifications
-
-    Executor es;
-
-    public void TcpIpWls(){
-        if(!Util.isConnectionInternet(this)) return;
-        int receiveLen;
-        byte[] buffer = new byte[20];
-        try {
-            socket = new Socket(InetAddress.getByName(Const.IpAddressWls), Const.wlsPort);
-            mBufferOut = new DataOutputStream(socket.getOutputStream());
-
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            mBufferIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-
-        } catch (Exception exc) {
-            Util.logsException(exc.getMessage(),this);
-        } finally {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                Util.logsException(e.getMessage(),this);
-            }
-        }
-    }
 
     public void MainFunction(){
-        for (int i = 0; i < listNames.size(); i++){
-            int id = 1000 + i;
-            listIdName.add(id);
-            TextView textView = new TextView(MainActivity.this);
-            textView.setText(listNames.get(i));
-            textView.setId(id);
-            textView.isClickable();
-            textView.setOnClickListener(viewOCL);
-            layoutName.addView(textView);
-        }
-        for (int i = 0; i < listPNames.size(); i++){
-            int id = 2000 + i;
-            listIdPName.add(id);
-            TextView textView = new TextView(MainActivity.this);
-            textView.setText(listPNames.get(i));
-            textView.setId(id);
-            textView.isClickable();
-            textView.setOnClickListener(viewOCL);
-            layoutPName.addView(textView);
-        }
+
         for (int i = 0; i < listValues.size(); i++){
-            int id = 3000 + i;
+            int id = 1000 + i;
             listIdValues.add(id);
             TextView textView = new TextView(MainActivity.this);
             textView.setText(listValues.get(i));
             textView.setId(id);
             textView.isClickable();
             textView.setOnClickListener(viewOCL);
+            textView.setBackgroundColor(Color.WHITE);
+            textView.setGravity(Gravity.CENTER);
             layoutValue.addView(textView);
         }
         funtionStart = true;
@@ -274,31 +245,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             int viewId = v.getId();
             String objectId = "";
-            if (viewId < 2000) {
-                for (int i = 0; i < listIdName.size(); i++) {
-                    if (viewId == listIdName.get(i)) {
-                        objectId = listIds.get(i);
-                        Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
-                        intent.putExtra("objectId", objectId);
-                        setResult(Const.CustomId, intent);
-                        startActivity(intent);
-                    }
-                }
-            } else if (viewId < 3000) {
-                for (int i = 0; i < listIdPName.size(); i++) {
-                    if (viewId == listIdPName.get(i)) {
-                        objectId = listIds.get(i);
-                        Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
-                        intent.putExtra("objectId", objectId);
-                        setResult(Const.CustomId, intent);
-                        startActivity(intent);
-                    }
-                }
-            } else if (viewId >= 3000) {
+            if (viewId >= 1000) {
                 for (int i = 0; i < listIdValues.size(); i++) {
                     if (viewId == listIdValues.get(i)) {
                         objectId = listIds.get(i);
-                        RecordsFromQueryDB[] records = ApiQuery.Instance().QueryFromDatabase(MainActivity.this, objectId);
                         Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
                         intent.putExtra("objectId", objectId);
                         setResult(Const.CustomId, intent);
