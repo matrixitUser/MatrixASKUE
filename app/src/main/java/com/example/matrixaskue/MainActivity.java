@@ -14,20 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-import com.example.matrixaskue.Classes.QueryFromDatabase.RecordsFromQueryDB;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.concurrent.Executor;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> listNames = new ArrayList<>();
     ArrayList<String> listPNames = new ArrayList<>();
     ArrayList<String> listValues = new ArrayList<>();
+    ArrayList<String> listValue = new ArrayList<>();
     ArrayList<String> listIds = new ArrayList<>();
+    ArrayList <Integer> listIdResourse = new ArrayList<>();
     ArrayList <Integer> listIdName = new ArrayList<>();
-    ArrayList <Integer> listIdPName = new ArrayList<>();
     ArrayList <Integer> listIdValues = new ArrayList<>();
+    ArrayList <Integer> listIdDates = new ArrayList<>();
+    ArrayList<String> listDates = new ArrayList<>();
+    ArrayList<String> listResourse = new ArrayList<>();
     boolean funtionStart = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         myService = new MyService();
         PendingIntent pendingIntent = createPendingResult(1, new Intent(),0  );
         Intent intent = new Intent(this, MyService.class).putExtra("pendingIntent", pendingIntent);
-       //myService.stopForeground(true);
         stopService(intent);
         myService.stopSelf();
         myService.IsActivity(true);
@@ -99,14 +95,19 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.Report:
                 // В разработке
+                return true;
             case R.id.Send_meters:
-                Intent intentSend = new Intent(this, SendMetersActivity.class);
+                Intent intentSend = new Intent(this, SendMetersActivity.class)
+                        .putExtra("listNames",listNames)
+                        .putExtra("listValue",listValue);
+                //TODO сюда ещё кидануть данные
                 startActivity(intentSend);
                 return true;
             case R.id.Notif:
              // В разработке
                 //   Intent intentNotif = new Intent(this, SendMetersActivity.class);
                // startActivity(intentNotif);
+                return true;
             case R.id.Settings:
                 Intent intentS = new Intent(this, PersonalSettingActivity.class);
                 startActivity(intentS);
@@ -115,12 +116,22 @@ public class MainActivity extends AppCompatActivity {
                 // В разработке
               //  Intent intentSn = new Intent(this, PersonalSettingActivity.class);
              //   startActivity(intentSn);
+                return true;
             case R.id.Feedback:
                 Intent intentF = new Intent(this, FeedbackActivity.class);
                 startActivity(intentF);
                 return true;
             case R.id.Profile:
-                // В разработке
+                try {
+                    Util.cleanProperties(this, "config");
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+
+                    return true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             case R.id.Exit:
                 PendingIntent pendingIntent = createPendingResult(1, new Intent(),0  );
                 Intent intentExit = new Intent(this, MyService.class).putExtra("pendingIntent", pendingIntent);
@@ -182,11 +193,12 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == Const.Error) {
 
         }
-        else if (resultCode == Const.Success) { // TODO Берем данные с my servise
-           // listNames = data.getStringArrayListExtra("listNames");
-           // listPNames = data.getStringArrayListExtra("listPNames");
-            listValues = data.getStringArrayListExtra("listValues");
+        else if (resultCode == Const.Success) { //  Берем данные с my servise
+            listNames = data.getStringArrayListExtra("listPNames");
+            listValue = data.getStringArrayListExtra("listValue");
             listIds = data.getStringArrayListExtra("listIds");
+            listDates = data.getStringArrayListExtra("listDates");
+            listResourse = data.getStringArrayListExtra("listResourse");
             if (funtionStart == true) updateValue();
             else MainFunction();
         }
@@ -217,25 +229,73 @@ public class MainActivity extends AppCompatActivity {
 
     public void MainFunction(){
 
-        for (int i = 0; i < listValues.size(); i++){
-            int id = 1000 + i;
-            listIdValues.add(id);
-            TextView textView = new TextView(MainActivity.this);
-            textView.setText(listValues.get(i));
-            textView.setId(id);
-            textView.isClickable();
-            textView.setOnClickListener(viewOCL);
-            textView.setBackgroundColor(Color.WHITE);
-            textView.setGravity(Gravity.CENTER);
-            layoutValue.addView(textView);
+        for (int i = 0; i < listValue.size(); i++){
+            int idResourse = 1000 + i;
+            listIdResourse.add(idResourse);
+            int idName = 2000 + i;
+            listIdName.add(idName);
+            int idValue = 3000 + i;
+            listIdValues.add(idValue);
+            int idDate = 4000 + i;
+            listIdDates.add(idDate);
+            CardView cardView = new CardView(MainActivity.this);
+            cardView.setCardBackgroundColor(0x632182);
+            cardView.setPadding(100,100,100,100);
+            LinearLayout linearLayout = new LinearLayout(MainActivity.this);
+            linearLayout.setPadding(10,10,10,10);
+            linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.setGravity(Gravity.CENTER);
+            // Ресурс
+            TextView textViewResourse = new TextView(MainActivity.this);
+            textViewResourse.setText(listResourse.get(i));
+            textViewResourse.setGravity(Gravity.CENTER);
+            textViewResourse.setTextSize(10);
+            textViewResourse.setBackgroundColor(Color.WHITE);
+            textViewResourse.setId(idResourse);
+            textViewResourse.isClickable();
+            textViewResourse.setOnClickListener(viewOCL);
+            linearLayout.addView(textViewResourse);
+            // Название
+            TextView textViewName = new TextView(MainActivity.this);
+            textViewName.setText(listNames.get(i));
+            textViewName.setGravity(Gravity.CENTER);
+            textViewName.setTextSize(15);
+            textViewName.setBackgroundColor(Color.WHITE);
+            textViewName.setId(idName);
+            textViewName.isClickable();
+            textViewName.setOnClickListener(viewOCL);
+            linearLayout.addView(textViewName);
+            // Показания
+            TextView textViewValue = new TextView(MainActivity.this);
+            textViewValue.setText(listValue.get(i));
+            textViewValue.setGravity(Gravity.CENTER);
+            textViewValue.setTextSize(25);
+            textViewValue.setId(idValue);
+            textViewValue.setBackgroundColor(Color.WHITE);
+            textViewValue.isClickable();
+            textViewValue.setOnClickListener(viewOCL);
+            linearLayout.addView(textViewValue);
+            // Дата
+            TextView textViewDate = new TextView(MainActivity.this);
+            textViewDate.setText(listDates.get(i));
+            textViewDate.setGravity(Gravity.CENTER);
+            textViewDate.setTextSize(10);
+            textViewDate.setBackgroundColor(Color.WHITE);
+            textViewDate.setId(idDate);
+            textViewDate.isClickable();
+            textViewDate.setOnClickListener(viewOCL);
+            linearLayout.addView(textViewDate);
+
+            cardView.addView(linearLayout);
+            layoutValue.addView(cardView);
         }
         funtionStart = true;
     }
 
     public void updateValue(){
-        for (int i = 0; i < listValues.size(); i++){
+        for (int i = 0; i < listValue.size(); i++){
             TextView textView = findViewById(listIdValues.get(i));
-            textView.setText(listValues.get(i));
+            textView.setText(listValue.get(i));
         }
     }
 
@@ -246,12 +306,44 @@ public class MainActivity extends AppCompatActivity {
             int viewId = v.getId();
             String objectId = "";
             if (viewId >= 1000) {
+                for (int i = 0; i < listIdResourse.size(); i++) {
+                    if (viewId == listIdResourse.get(i)) {
+                        objectId = listIds.get(i);
+                        Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
+                        intent.putExtra("objectId", objectId);
+                        setResult(Const.CustomId, intent);
+                        startActivity(intent);
+                    }
+                }
+            }
+            if (viewId >= 2000) {
+                for (int i = 0; i < listIdName.size(); i++) {
+                    if (viewId == listIdName.get(i)) {
+                        objectId = listIds.get(i);
+                        Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
+                        intent.putExtra("objectId", objectId);
+                        setResult(Const.CustomId, intent);
+                        startActivity(intent);
+                    }
+                }
+            }
+            if (viewId >= 3000) {
                 for (int i = 0; i < listIdValues.size(); i++) {
                     if (viewId == listIdValues.get(i)) {
                         objectId = listIds.get(i);
                         Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
                         intent.putExtra("objectId", objectId);
                         setResult(Const.CustomId, intent);
+                        startActivity(intent);
+                    }
+                }
+            }
+            if (viewId >= 4000) {
+                for (int i = 0; i < listIdDates.size(); i++) {
+                    if (viewId == listIdDates.get(i)) {
+                        objectId = listIds.get(i);
+                        Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
+                        intent.putExtra("objectId", objectId);
                         startActivity(intent);
                     }
                 }

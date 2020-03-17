@@ -6,59 +6,114 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SendMetersActivity">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
+        android:id="@+id/scrOptions"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Выберите счетчик"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Выберите счетчик"
+                android:textSize="20dp"
+                android:gravity=""
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_style"
-            android:layout_margin="15dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_view_style"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:id="@+id/spinner"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:id="@+id/getValue"
-            android:background="@drawable/text_view_style"
-            android:layout_margin="15dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/getValue"
+                android:background="@drawable/text_view_style"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:padding="20dp"
+                android:layout_margin="15dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Введите показания"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_margin="15dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:background="@drawable/text_view_style"
-            android:layout_margin="15dp"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Введите показания"
+                android:textSize="20dp"
+                android:gravity=""
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_view_style"
+                android:padding="15dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/metersForSend"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Или загрузите фотографию..."
+                android:textSize="20dp"
+                android:gravity=""
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickPhotoFromGallery"
+                android:text="С галлереи"
+                android:background="@drawable/text_view_style"
+                android:layout_margin="15dp"
+                android:padding="10dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickPhotoFromCamera"
+                android:text="С камеры"
+                android:background="@drawable/text_view_style"
+                android:layout_margin="15dp"
+                android:padding="10dp"/>
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/verification"
+            android:text="Я подтверждаю правильность внесенных данных"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:onClick="onClickSendMeters"
             android:text="Отправить"
             android:background="@drawable/text_view_style"
             android:layout_margin="15dp"/>

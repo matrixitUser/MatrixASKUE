@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin = "13dp">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/scrLogs"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvLogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableEnd="@color/colorPrimary"
+            android:textColor="#632182"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:isScrollContainer="true"
+            android:gravity="left"/>
+
+    </ScrollView>
+
+
+
+    <Button
+        android:id="@+id/buttonClean"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:onClick="onClickCleanLogs"
+        android:background="#5ABEB4"
+        android:elevation="4dp"
+        android:text="Очистить логи"
+        android:textColor="#FFFFFF"
+        android:layout_margin = "15dp"
+        android:scaleType="fitEnd"/>
+</LinearLayout>

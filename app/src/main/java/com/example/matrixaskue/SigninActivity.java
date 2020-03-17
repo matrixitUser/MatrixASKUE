@@ -116,4 +116,34 @@ public class SigninActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    public void onClickDemo(View view){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String login = "demo", password = "demo";
+                sessionId = ApiQuery.Instance().AuthByLogin(SigninActivity.this, login, password);
+                if(sessionId == null || sessionId == ""){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvMessageSignin.setText("неверный логин или пароль");
+                        }
+                    });
+                }
+                else{
+                    try {
+                        Util.setPropertyConfig("login", login, SigninActivity.this);
+                        Util.setPropertyConfig("password", password, SigninActivity.this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Intent answerIntent = new Intent();
+                    answerIntent.putExtra("isLoginAndPassword", true);
+                    setResult(Const.Session, answerIntent);
+                    finish();
+                }
+            }
+        }).start();
+    }
 }

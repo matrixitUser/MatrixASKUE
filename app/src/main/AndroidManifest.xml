@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,11 +20,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
+        <activity android:name=".ReportsActivity"></activity>
         <activity
             android:name=".PersonalSettingActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".FeedbackActivity" />
-        <activity android:name=".SendMetersActivity" />
+        <activity android:name=".SendMetersActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".FullDateActivity" />
         <activity
             android:name=".SigninActivity"

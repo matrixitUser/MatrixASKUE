@@ -23,9 +23,12 @@
             android:layout_margin="15dp"/>
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/textEmail"
             android:layout_height="0dp"
             android:layout_margin="15dp"
             android:layout_weight="8"
+            android:padding="15dp"
+            android:gravity="top"
             android:background="@drawable/text_view_style" />
 
     </LinearLayout>
@@ -39,6 +42,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Отправить"
+            android:onClick="onClickSend"
             android:background="@drawable/text_view_style"
             android:layout_margin="25dp"/>
     </LinearLayout>

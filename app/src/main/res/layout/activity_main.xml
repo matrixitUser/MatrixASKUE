@@ -6,31 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@android:color/white"
+    android:background="@android:color/white">
 
-    android:id="@+id/actiivitymain"
-    >
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="0dp"
+        android:id="@+id/scrLogs"
+        android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#632182"
-            android:layout_margin="2dp"
-            android:id="@+id/layoutValue"
-            android:padding="1dp"
-            >
+            android:layout_margin="5dp"
+            android:id="@+id/layoutValue">
+
         </LinearLayout>
-
-
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

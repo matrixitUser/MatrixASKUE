@@ -220,13 +220,13 @@ public class ApiQuery {
 
     public RecordsFromQueryDB[] QueryFromDatabase(Context context, String objectId){
         Calendar calStart = Calendar.getInstance();
-        calStart.add(Calendar.MINUTE,-25);//-25
+        calStart.add(Calendar.HOUR,-10);//-25
         Date dtStart = calStart.getTime();
         Calendar calendarNow = Calendar.getInstance();
         calendarNow.add(Calendar.MINUTE, 20);
         Date dtNow = calendarNow.getTime();
         QueryDB queryDB = new QueryDB();
-        queryDB.setQueryDB(new String[]{objectId}, dtStart, dtNow,"Current");
+        queryDB.setQueryDB(new String[]{objectId}, dtStart, dtNow,"Constant");
         try {
             Message message = MessageExecute("records-get1", queryDB, context);
             if(message == null || message.getBody() == null) return null;
@@ -242,9 +242,9 @@ public class ApiQuery {
     }
 
 
-    public RecordFromEditGetRow EditGetRow(Context context){
+    public RecordFromEditGetRow EditGetRow(String objectId, Context context){
         EditGetRow editGetRow = new EditGetRow();
-        editGetRow.setEditGetRow(false, goObjectIdUpp );
+        editGetRow.setEditGetRow(false, objectId );
         Message message = MessageExecute( "edit-get-row", editGetRow, context);
         String json1 = gson.toJson(message.getBody());
         EditGetRow editGetRow1 = gson.fromJson(json1, EditGetRow.class);

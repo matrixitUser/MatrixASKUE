@@ -56,6 +56,9 @@ public class MyService extends Service {
     ArrayList<String> listNames = new ArrayList<>();
     ArrayList<String> listPNames = new ArrayList<>();
     ArrayList<String> listValues = new ArrayList<>();
+    ArrayList<String> listValue = new ArrayList<>();
+    ArrayList<String> listDates = new ArrayList<>();
+    ArrayList<String> listResourse = new ArrayList<>();
 
     int index;
     private boolean isPingOk = false;
@@ -312,9 +315,12 @@ public class MyService extends Service {
         isEnterInFunc = true;
         //RecordsFromQueryDB[] records = ApiQuery.Instance().QueryFromDatabase(this);
         listIds.clear();
-     //   listNames.clear();
-     //   listPNames.clear();
+        listNames.clear();
+        listPNames.clear();
         listValues.clear();
+        listValue.clear();
+        listDates.clear();
+        listResourse.clear();
         RowFromRowCache[] recordsName = ApiQuery.Instance().RowCache(this);
 
         for (int i = 0; i < recordsName.length; i++) {
@@ -323,13 +329,25 @@ public class MyService extends Service {
             String name = recordsName[i].getName();
          //   listNames.add(name);
             String pName = recordsName[i].getPname();
-         //   listPNames.add(pName);
+            listPNames.add(pName);
             float value = recordsName[i].getValue();
             String valueUnit = recordsName[i].getvalueUnitMeasurement();
             String values = value +" " + valueUnit;
+            String resourse = "";
+            if (valueUnit.equals("кВт*ч") || valueUnit.equals("кВт")){
+                resourse = "Электросчетчик";
+            }
+            else if (valueUnit.equals("Гкал")){
+                resourse = "Теплосчетчик";
+            }
+            else if (valueUnit.equals("м3")){
+                resourse = "Водосчетчик";
+            }
+            listResourse.add(resourse);
+            listValue.add(values);
             Date date =  recordsName[i].getDate();
-            String allValues = "Электроэнергия" + "\n" + pName + "\n" + values + "\n" + date + "\n";
-            listValues.add(allValues);
+            listDates.add(String.valueOf(date));
+
         }
 
 
@@ -343,9 +361,10 @@ public class MyService extends Service {
 
 
         Intent intent = new Intent()
-            //    .putExtra("listNames", listNames)
-            //    .putExtra("listPNames",listPNames)
-                .putExtra("listValues",listValues)
+                .putExtra("listPNames", listPNames)
+                .putExtra("listValue",listValue)
+                .putExtra("listResourse",listResourse)
+                .putExtra("listDates",listDates)
                 .putExtra("listIds",listIds)
                 ;
         try {
