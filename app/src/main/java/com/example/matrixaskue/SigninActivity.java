@@ -121,7 +121,7 @@ public class SigninActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String login = "demo", password = "demo";
+                String login = "ai-417", password = "ai-417";
                 sessionId = ApiQuery.Instance().AuthByLogin(SigninActivity.this, login, password);
                 if(sessionId == null || sessionId == ""){
                     handler.post(new Runnable() {

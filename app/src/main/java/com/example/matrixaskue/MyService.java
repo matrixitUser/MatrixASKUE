@@ -331,22 +331,22 @@ public class MyService extends Service {
             String pName = recordsName[i].getPname();
             listPNames.add(pName);
             float value = recordsName[i].getValue();
+
             String valueUnit = recordsName[i].getvalueUnitMeasurement();
+            if (valueUnit == null) valueUnit = "";
             String values = value +" " + valueUnit;
+            String res = recordsName[i].getResource();
             String resourse = "";
-            if (valueUnit.equals("кВт*ч") || valueUnit.equals("кВт")){
-                resourse = "Электросчетчик";
+            if (res.equals("energy")){
+                resourse = "Электроэнергия";
             }
-            else if (valueUnit.equals("Гкал")){
-                resourse = "Теплосчетчик";
-            }
-            else if (valueUnit.equals("м3")){
-                resourse = "Водосчетчик";
+            else if (res.equals("water")){
+                resourse = "Вода";
             }
             listResourse.add(resourse);
             listValue.add(values);
-            Date date =  recordsName[i].getDate();
-            listDates.add(String.valueOf(date));
+            //Date date =  recordsName[i].getDate();
+           // listDates.add(String.valueOf(date));
 
         }
 
@@ -364,7 +364,7 @@ public class MyService extends Service {
                 .putExtra("listPNames", listPNames)
                 .putExtra("listValue",listValue)
                 .putExtra("listResourse",listResourse)
-                .putExtra("listDates",listDates)
+            //   .putExtra("listDates",listDates)
                 .putExtra("listIds",listIds)
                 ;
         try {

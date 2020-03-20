@@ -33,6 +33,13 @@ public class RecordFromEditGetRow {
     @Expose
     public String idWls ;
 
+    @SerializedName("parameters")
+    @Expose
+    public String parameters ;
+
+    public String getParameters() {
+        return parameters;
+    }
 
 
     public String getMax() {

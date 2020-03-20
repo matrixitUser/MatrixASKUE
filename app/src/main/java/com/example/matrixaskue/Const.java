@@ -2,7 +2,7 @@ package com.example.matrixaskue;
 
 public class Const {
 
-    public static final String MX_URL = "http://system.matrixit.ru";
+    public static final String MX_URL = "http://81.30.202.85:8080"; //"http://system.matrixit.ru"
     public static final String MX_URL_local = "http://system.matrixit.ru:8081";
     public static final String IpAddressWls = "77.94.120.165";
     public static final Integer wlsPort = 5001;

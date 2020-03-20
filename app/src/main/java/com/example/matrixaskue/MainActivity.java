@@ -47,26 +47,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+       // setTitle("Газизова");
 
         layoutValue = findViewById(R.id.layoutValue);
+        layoutValue.setPadding(10,10,10,10);
 
         String login = "", password = "";
         try {
             login = Util.getProperty("login", this);
             password = Util.getProperty("password", this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         if(login == null || password == null || login.equals("") || password.equals("")){
             Intent intentSignin = new Intent(this, SigninActivity.class);
             startActivityForResult(intentSignin, Const.Session);
+
         }
         else{
             if(!Util.isConnectionInternet(this)){
                 Util.logsError(Const.notConnectionToInternet,this);
                 return;
             }
+
             FunctionAtStart();
 
         }
@@ -197,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             listNames = data.getStringArrayListExtra("listPNames");
             listValue = data.getStringArrayListExtra("listValue");
             listIds = data.getStringArrayListExtra("listIds");
-            listDates = data.getStringArrayListExtra("listDates");
+           // listDates = data.getStringArrayListExtra("listDates");
             listResourse = data.getStringArrayListExtra("listResourse");
             if (funtionStart == true) updateValue();
             else MainFunction();
@@ -228,7 +232,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void MainFunction(){
-
+        TextView textView = new TextView(MainActivity.this);
+        layoutValue.addView(textView);
         for (int i = 0; i < listValue.size(); i++){
             int idResourse = 1000 + i;
             listIdResourse.add(idResourse);
@@ -240,7 +245,10 @@ public class MainActivity extends AppCompatActivity {
             listIdDates.add(idDate);
             CardView cardView = new CardView(MainActivity.this);
             cardView.setCardBackgroundColor(0x632182);
-            cardView.setPadding(100,100,100,100);
+           // cardView.setPadding(100,100,100,100);
+            cardView.setRadius(70);
+            cardView.setCardElevation(8);
+            cardView.setContentPadding(20, 20, 20, 20);
             LinearLayout linearLayout = new LinearLayout(MainActivity.this);
             linearLayout.setPadding(10,10,10,10);
             linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -249,8 +257,8 @@ public class MainActivity extends AppCompatActivity {
             TextView textViewResourse = new TextView(MainActivity.this);
             textViewResourse.setText(listResourse.get(i));
             textViewResourse.setGravity(Gravity.CENTER);
-            textViewResourse.setTextSize(10);
-            textViewResourse.setBackgroundColor(Color.WHITE);
+            textViewResourse.setTextSize(15);
+
             textViewResourse.setId(idResourse);
             textViewResourse.isClickable();
             textViewResourse.setOnClickListener(viewOCL);
@@ -259,8 +267,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textViewName = new TextView(MainActivity.this);
             textViewName.setText(listNames.get(i));
             textViewName.setGravity(Gravity.CENTER);
-            textViewName.setTextSize(15);
-            textViewName.setBackgroundColor(Color.WHITE);
+            textViewName.setTextSize(20);
             textViewName.setId(idName);
             textViewName.isClickable();
             textViewName.setOnClickListener(viewOCL);
@@ -269,26 +276,27 @@ public class MainActivity extends AppCompatActivity {
             TextView textViewValue = new TextView(MainActivity.this);
             textViewValue.setText(listValue.get(i));
             textViewValue.setGravity(Gravity.CENTER);
-            textViewValue.setTextSize(25);
+            textViewValue.setTextSize(30);
             textViewValue.setId(idValue);
-            textViewValue.setBackgroundColor(Color.WHITE);
             textViewValue.isClickable();
             textViewValue.setOnClickListener(viewOCL);
             linearLayout.addView(textViewValue);
             // Дата
-            TextView textViewDate = new TextView(MainActivity.this);
+           /* TextView textViewDate = new TextView(MainActivity.this);
             textViewDate.setText(listDates.get(i));
             textViewDate.setGravity(Gravity.CENTER);
             textViewDate.setTextSize(10);
-            textViewDate.setBackgroundColor(Color.WHITE);
             textViewDate.setId(idDate);
             textViewDate.isClickable();
             textViewDate.setOnClickListener(viewOCL);
-            linearLayout.addView(textViewDate);
+            linearLayout.addView(textViewDate);*/
 
             cardView.addView(linearLayout);
             layoutValue.addView(cardView);
+            TextView textView1 = new TextView(MainActivity.this);
+            layoutValue.addView(textView1);
         }
+
         funtionStart = true;
     }
 
@@ -305,12 +313,16 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             int viewId = v.getId();
             String objectId = "";
+            String resourse = "";
             if (viewId >= 1000) {
                 for (int i = 0; i < listIdResourse.size(); i++) {
                     if (viewId == listIdResourse.get(i)) {
                         objectId = listIds.get(i);
+                        resourse = listResourse.get(i);
                         Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
-                        intent.putExtra("objectId", objectId);
+                        intent
+                                .putExtra("objectId", objectId)
+                                .putExtra("resourse", resourse);
                         setResult(Const.CustomId, intent);
                         startActivity(intent);
                     }
@@ -320,8 +332,11 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < listIdName.size(); i++) {
                     if (viewId == listIdName.get(i)) {
                         objectId = listIds.get(i);
+                        resourse = listResourse.get(i);
                         Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
-                        intent.putExtra("objectId", objectId);
+                        intent
+                                .putExtra("objectId", objectId)
+                                .putExtra("resourse", resourse);
                         setResult(Const.CustomId, intent);
                         startActivity(intent);
                     }
@@ -331,14 +346,17 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < listIdValues.size(); i++) {
                     if (viewId == listIdValues.get(i)) {
                         objectId = listIds.get(i);
+                        resourse = listResourse.get(i);
                         Intent intent = new Intent(MainActivity.this, FullDateActivity.class);
-                        intent.putExtra("objectId", objectId);
+                        intent
+                                .putExtra("objectId", objectId)
+                                .putExtra("resourse", resourse);
                         setResult(Const.CustomId, intent);
                         startActivity(intent);
                     }
                 }
             }
-            if (viewId >= 4000) {
+           /* if (viewId >= 4000) {
                 for (int i = 0; i < listIdDates.size(); i++) {
                     if (viewId == listIdDates.get(i)) {
                         objectId = listIds.get(i);
@@ -347,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
-            }
+            }*/
         }
     };
 }

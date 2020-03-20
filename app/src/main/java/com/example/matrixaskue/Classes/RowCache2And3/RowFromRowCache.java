@@ -42,8 +42,15 @@ public class RowFromRowCache {
     @Expose
     public String date;
 
+    @SerializedName("resource")
+    @Expose
+    public String resource;
 
 
+
+    public String getResource() {
+        return resource;
+    }
 
     public String getId() {
         return id;

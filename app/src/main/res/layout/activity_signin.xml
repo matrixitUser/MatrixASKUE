@@ -19,18 +19,11 @@
             android:layout_marginRight="30dp">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="135dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/logo" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textSize="14sp"
-                android:text="Логин"
-                android:layout_weight="3"/>
             <EditText
                 android:id="@+id/etLogin"
                 android:layout_width="match_parent"
@@ -39,15 +32,9 @@
                 android:inputType="text"
                 android:gravity="center_vertical"
                 android:ems="10"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_marginTop="10dp"
-                android:textSize="14sp"
-                android:text="Пароль"
-                android:layout_weight="3"/>
+                android:layout_weight="1"
+                android:hint="Введите логин"
+                android:layout_marginBottom="30dp"/>
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
@@ -57,9 +44,16 @@
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="15dp"
+                android:hint="Введите пароль"/>
         </LinearLayout>
     </ScrollView>
+    <TextView
+        android:id="@+id/tvMessageSignin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp" />
     <Button
         android:id="@+id/btnEntry"
         android:onClick="onClickEntry"
@@ -70,7 +64,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="5dp"
-        android:elevation="4dp"/>
+        android:elevation="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,13 +73,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center">
-        <TextView
-            android:id="@+id/tvMessageSignin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:layout_weight="3"/>
+
 
         <Button
             android:id="@+id/btnDemo"
@@ -97,7 +85,8 @@
             android:text="Демо доступ"
             android:padding="5dp"
             android:textSize="10sp"
-            android:elevation="4dp"/>
+            android:elevation="8dp"
+            android:layout_marginTop="15dp"/>
     </LinearLayout>
 
 </LinearLayout>

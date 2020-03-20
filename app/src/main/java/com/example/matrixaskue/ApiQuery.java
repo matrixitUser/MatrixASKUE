@@ -176,7 +176,9 @@ public class ApiQuery {
             String json = gson.toJson(message.getBody());
             AuthBySession authBySession1 = gson.fromJson(json, AuthBySession.class) ;
             gSessionId = authBySession1.getSessionId();
+            String userFullName = authBySession1.getSurname() + authBySession1.getName() + authBySession1.getPatronymic();
             Util.setPropertyConfig("sessionId", gSessionId, context);
+            Util.setPropertyConfig("userFullName", userFullName, context);
             return true;
         } catch (Exception e) {
             if(logsReplay(e.getMessage())){
@@ -218,15 +220,15 @@ public class ApiQuery {
         return row;
     }
 
-    public RecordsFromQueryDB[] QueryFromDatabase(Context context, String objectId){
+    public RecordsFromQueryDB[] QueryFromDatabase(Context context, String objectId, String type){
         Calendar calStart = Calendar.getInstance();
-        calStart.add(Calendar.HOUR,-10);//-25
+        calStart.add(Calendar.DATE,-5);//-25
         Date dtStart = calStart.getTime();
         Calendar calendarNow = Calendar.getInstance();
-        calendarNow.add(Calendar.MINUTE, 20);
+        calendarNow.add(Calendar.DATE, 1);
         Date dtNow = calendarNow.getTime();
         QueryDB queryDB = new QueryDB();
-        queryDB.setQueryDB(new String[]{objectId}, dtStart, dtNow,"Constant");
+        queryDB.setQueryDB(new String[]{objectId}, dtStart, dtNow,type);
         try {
             Message message = MessageExecute("records-get1", queryDB, context);
             if(message == null || message.getBody() == null) return null;
@@ -241,7 +243,6 @@ public class ApiQuery {
         return null;
     }
 
-
     public RecordFromEditGetRow EditGetRow(String objectId, Context context){
         EditGetRow editGetRow = new EditGetRow();
         editGetRow.setEditGetRow(false, objectId );
@@ -250,6 +251,4 @@ public class ApiQuery {
         EditGetRow editGetRow1 = gson.fromJson(json1, EditGetRow.class);
         return editGetRow1.getTube();
     }
-
-
 }
